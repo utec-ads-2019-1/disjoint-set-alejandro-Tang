@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/alejandro/Documents/Workspace/disjoint-set-alejandro-Tang/main.cpp
+iostream
+-
+node.h
+/home/alejandro/Documents/Workspace/disjoint-set-alejandro-Tang/node.h
+set.h
+/home/alejandro/Documents/Workspace/disjoint-set-alejandro-Tang/set.h
+vector
+-
+
+/home/alejandro/Documents/Workspace/disjoint-set-alejandro-Tang/node.h
+
+/home/alejandro/Documents/Workspace/disjoint-set-alejandro-Tang/set.h
+node.h
+/home/alejandro/Documents/Workspace/disjoint-set-alejandro-Tang/node.h
+iostream
+-
+

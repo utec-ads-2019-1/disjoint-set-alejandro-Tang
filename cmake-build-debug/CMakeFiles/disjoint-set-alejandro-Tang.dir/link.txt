@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/disjoint-set-alejandro-Tang.dir/main.cpp.o  -o disjoint-set-alejandro-Tang 
