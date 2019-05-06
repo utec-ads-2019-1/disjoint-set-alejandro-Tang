@@ -21,9 +21,9 @@ public:
 
     Node<T> * findRoot(){
         if(father == this){
-            return father;
+            return this->father;
         }else{
-            return father->findRoot();
+            return this->father->findRoot();
         }
     }
 
@@ -42,6 +42,10 @@ public:
 
     int getRank(){
         return rank;
+    }
+
+    Node<T> * getFather(){
+        return this->father;
     }
 
     void joinArbitrary(Node<T> * other){
@@ -64,6 +68,21 @@ public:
         }
     }
 
+
+    void compressPath(){
+        if(this->father != this){
+            this->father = this->father->compressPathHelper();
+        }
+    }
+
+    Node<T> * compressPathHelper(){
+        if(this->father != this){
+            this->father = this->father->compressPathHelper();
+            return this->father;
+        }else{
+            return this;
+        }
+    }
 
 };
 

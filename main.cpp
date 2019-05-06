@@ -27,6 +27,13 @@ void joinAndPrintArbitrario(int a, int b, vector<Node<int> *> *vector){
     cout << endl;
 }
 
+void compressAndPrint(int a, vector<Node<int> *> *vector){
+    cout << "Antes del path-compression, el padre del nodo " << a << " era " << ((*vector)[a-1]->getFather())->getData() << " y su root era " << ((*vector)[a-1]->findRoot())->getData() << endl;
+    (*vector)[a-1]->compressPath();
+    cout << "Ahora, su padre es " << ((*vector)[a-1]->getFather())->getData() << endl;
+}
+
+
 int main(){
 
     auto nodeVector1 = new vector<Node<int>*>;
@@ -62,8 +69,7 @@ int main(){
     }
     delete nodeVector1;
 
-
-    cout << "Se realizan los joins arbitrarios: \n";
+    cout << "-----------------------------------------------------\nSe realizan los joins arbitrarios: \n";
     joinAndPrintArbitrario(1, 2, nodeVector2);
     joinAndPrintArbitrario(3, 4, nodeVector2);
     joinAndPrintArbitrario(3, 5, nodeVector2);
@@ -80,6 +86,9 @@ int main(){
     joinAndPrintArbitrario(14, 16, nodeVector2);
     joinAndPrintArbitrario(1, 3, nodeVector2);
     joinAndPrintArbitrario(1, 14, nodeVector2);
+
+    compressAndPrint(9, nodeVector2);
+
 
     for(int i = 1; i < 17; i++){
         delete (*nodeVector2)[i-1];
