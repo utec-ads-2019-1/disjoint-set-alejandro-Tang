@@ -11,12 +11,14 @@ private:
     T data;
     Node<T> * father;
     int rank;
+    int size;
 
 public:
     Node<T>(T data){
         this->data = data;
         father = this;
         rank = 0;
+        size = 1;
     }
 
     Node<T> * findRoot(){
@@ -44,6 +46,15 @@ public:
         return rank;
     }
 
+    int getSize(){
+        return size;
+    }
+
+
+    void increaseSize(int toSum){
+        this->size += toSum;
+    }
+
     Node<T> * getFather(){
         return this->father;
     }
@@ -53,6 +64,7 @@ public:
         auto thisRoot = this->findRoot();
         if(otherRoot != thisRoot){
             otherRoot->setNewFather(thisRoot);
+            thisRoot->increaseSize(otherRoot->getSize());
         }
     }
 
@@ -62,12 +74,27 @@ public:
         if(otherRoot != thisRoot){
             if(thisRoot->getRank() >= otherRoot->getRank()){
                 otherRoot->setNewFather(thisRoot);
+                thisRoot->increaseSize(otherRoot->getSize());
             }else{
                 thisRoot->setNewFather(otherRoot);
+                otherRoot->increaseSize(thisRoot->getSize());
             }
         }
     }
 
+    void joinBySize(Node<T> * other){
+        auto otherRoot = other->findRoot();
+        auto thisRoot = this->findRoot();
+        if(otherRoot != thisRoot){
+            if(thisRoot->getSize() >= otherRoot->getSize()){
+                otherRoot->setNewFather(thisRoot);
+                thisRoot->increaseSize(otherRoot->getSize());
+            }else{
+                thisRoot->setNewFather(otherRoot);
+                otherRoot->increaseSize(thisRoot->getSize());
+            }
+        }
+    }
 
     void compressPath(){
         if(this->father != this){
